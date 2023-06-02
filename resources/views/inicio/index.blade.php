@@ -13,7 +13,7 @@
                <div class="col-12 col-md-4">
                    <h1 class="text-white h3">Encuentra una receta para tu próxima comida</h1>
                    <form action="{{route('receta.search')}}">
-                       <input type="search" name="buscar" id="buscar" class="form-control" placeholder="Buscar receta" onfocus="true">
+                       <input type="search" name="buscar" id="buscar" class="form-control mb-5" placeholder="Buscar receta" onfocus="true">
                    </form>
                </div>
             </div>
