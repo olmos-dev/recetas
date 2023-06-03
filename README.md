@@ -1,78 +1,154 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# Descripción General - Recetas
+Es un blog de recetas de cocina. Donde los usuarios pueden crear, editar y eliminar sus recetas en un panel de administración. También los usuarios tienen un perfil que pueden subir una foto y editar el mismo. Cada receta tiene una categoría, y el usuario interesado en una receta puede verla y darle me gusta. Al darle me gusta, automáticamente se creara una sección en específica para el usuario de las recetas que le han gustado. Al inicio los usuarios pueden realizar búsquedas y ver las recetas por categoría. Se implementó el paquete de autenticación laravel UI.  
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+# Requerimientos
+* PHP 7.4
+* Laravel 7
+* phpMyAdmin
+* Instalado:
+    * Composer
+    * Node.js
+    * npm
 
-## About Laravel
+Notas: 
+* Si usas un SGBD diferente, debes mirar la documentación oficial de Laravel y ajustar los nuevos parámetros de las credenciales en el archivo .env
+[Leer más](https://laravel.com/docs/7.x/database "Ir a  documentación")
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# Primeros pasos
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### **Descarga o clona este repositorio**
+```bash
+git clone https://github.com/olmos-dev/recetas.git
+```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### **Instalar**
+Instala la carpeta *vendor* para el proyecto
+```bash
+composer update
+```
 
-## Learning Laravel
+Instala *node modules*
+```bash
+npm install
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### **Configurar la Base de Datos**
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. crea una nueva base de datos llamada receta
 
-## Laravel Sponsors
+2. crea un nuevo archivo .env en la raíz del proyecto
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+3. Ahora ajusta los parámetros de las base de datos que utilizas en el archivo .env
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
+    ```bash
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=receta
+    DB_USERNAME=root
+    DB_PASSWORD=
+    ```
+4. También ajusta la configuración y las credenciales de **mailtrap** (debes de crear una cuenta o usar algún otro servicio) en el archivo .env
 
-## Contributing
+    ```bash
+    MAIL_MAILER=smtp
+    MAIL_HOST=sandbox.smtp.mailtrap.io
+    MAIL_PORT=2525
+    MAIL_USERNAME="tu_username"
+    MAIL_PASSWORD="tu_contraseña"
+    MAIL_ENCRYPTION=tls
+    MAIL_FROM_ADDRESS="biblioteca@example.com"
+    MAIL_FROM_NAME="${APP_NAME}"
+    ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+5. Debes ejecutar las migraciones para crear la tablas en la base de datos 
+    ```bash
+    php artisan migrate
+    ```
+6. Debes ejecutar los *seeders* para poblar la base de datos 
+    ```bash
+    php artisan db:seed
+    ```
 
-## Code of Conduct
+### **Genera una llave**
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Debes generar una nueva llave para la aplicación
 
-## Security Vulnerabilities
+```bash
+php artisan key:generate
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# Ejecutar el proyecto
+Ejecuta el servidor de laravel
+```bash
+php artisan serve
+```
+Ejecuta el servidor de npm 
+```bash
+npm run watch
+```
+Ahora abre el proyecto y disfruta de la aplicación
+```bash
+http://127.0.0.1:8000/
+```
+Nota: hay tres perfiles para iniciar sesión disponibles o también puedes registar un nuevo usuario
 
-## License
+|Correo|Contraseña|
+|:-----|-------:|
+|alberto@mail.com|123
+|carlos@mail.com|123
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# Tecnologías y herramientas usadas
+* Laravel 7
+* Vue 3 (en la sección de dar likes)
+* PHP 7.4
+* Bootstrap 4.6
+* phpMyAdmin 
+* Javascript
+
+# Documentación
+
+## Diagrama entidad relación
+
+![db](files/diagrama.png "Database - Social Network")
+
+## Relaciones
+* Tabla **users** tiene una relacion muchos a muchos con la tabla **receta**. La tabla terciaria es **likes_receta**
+* La tabla **users** tiene una relacion de uno a muchos con la tabla **receta**
+* La tabla **categoria** tiene una relacion de uno a muchos con la tabla **receta**
+* La tabla **users** tiene una relacion uno a uno con **perfil** 
+
+
+## Laravel UI
+Se utilizó el paquete de autenticación **Laravel UI**
+* Inicio de sesión con correo electrónico
+* Registro de usuarios
+* Restablecimiento de contraseñas 
+* Configuración de servidor SMTP (mailtrap) para envio de enlaces al correo para restablecer contraseñas y verificación del correo electrónico
+
+## Screenshots
+![imagen](files/1.png "Página principal")
+![imagen](files/2.png "Iniciar sesión")
+![imagen](files/3.png "Registro de miembros")
+![imagen](files/4.png "Restablecimiento de contraseñas")
+![imagen](files/5.png "Panel de administración de las recetas")
+![imagen](files/6.png "Vista previa del perfil")
+![imagen](files/9.png "Recetas del perfil")
+![imagen](files/8-1.png "Editar perfil")
+![imagen](files/8-2.png "Editar perfil")
+
+![imagen](files/7-1.png "Crear recetas")
+![imagen](files/7-2.png "Crear recetas")
+![imagen](files/10-1.png "Editar recetas")
+![imagen](files/10-2.png "Editar recetas")
+![imagen](files/11.png "Sección de me gusta")
+![imagen](files/12-1.png "Vista previa de una receta")
+![imagen](files/12-2.png "Vista previa de una receta")
+![imagen](files/12-3.png "Vista previa de una receta")
+
+
+
+
+
+
+
