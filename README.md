@@ -57,7 +57,7 @@ npm install
     MAIL_USERNAME="tu_username"
     MAIL_PASSWORD="tu_contraseña"
     MAIL_ENCRYPTION=tls
-    MAIL_FROM_ADDRESS="biblioteca@example.com"
+    MAIL_FROM_ADDRESS="receta@example.com"
     MAIL_FROM_NAME="${APP_NAME}"
     ```
 
