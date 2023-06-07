@@ -110,7 +110,7 @@ Nota: hay tres perfiles para iniciar sesión disponibles o también puedes regis
 
 ## Diagrama entidad relación
 
-![db](files/diagrama.png "Database - Social Network")
+![db](files/diagrama.png "Modelo entidad relación - Recetas")
 
 ## Relaciones
 * Tabla **users** tiene una relacion muchos a muchos con la tabla **receta**. La tabla terciaria es **likes_receta**
